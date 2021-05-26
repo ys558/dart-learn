@@ -165,4 +165,11 @@ main() {
   });
   print(f);
   // false
+  
+  print(person.keys.toList());
+  // [name, age]
+  print(person.values.toList());
+  // [xxx, 20]
+  print(person.entries);
+  // (MapEntry(name: xxx), MapEntry(age: 20))
 }

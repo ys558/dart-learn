@@ -65,22 +65,24 @@ void main(){
   if (i==m ) print('i=m'); else if( i !=m ) print('i!=m');
 
 
+
   /**
    * List 列表
    */
-  List l = ['aaa', 'bbb', 'ccc'];
+  List l = ['aaa', 2, true];
   print(l.length);
-  var l2 = new List();
-  l2.add('zs');
-  l2.add('ls');
-  l2.add('ww');
-  print(l2);
-  // [zs, ls, ww]
-  var l3 = new List<String>();
-  l3.add('234');
-  l3.add('hehe');
+  const l2 = ['vvv', 5];
+  print('$l $l2');
+
+  List l3 = <String>['foo', 'bar'];
+  l3.add('fee');
   print(l3);
 
+  List l4 = <double>[23, 44.11, 12.01];
+  print(l4);
+
+  List l5 = List<String>.filled(3, '');
+  print(l5);
 
   /**
    * Maps 类似json对象
@@ -96,6 +98,8 @@ void main(){
   print(p);
   // {name: zhangsan, age: 30}
 
+  var p2 = new Map();
+  print(p2);
 
   /**
    * is 关键字 判断类型：
