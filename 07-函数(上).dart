@@ -35,39 +35,27 @@ int sunNum(int n){
 
 //例2、定义一个方法，打印用户信息
 String printUserInfo (String username, int age) {
-  print('$username, $age');
+  return '$username, $age';
 }
 
-// 例3：定义一个带可选参数的方法, 用[]括起来, 如下:
-String userInfo (String username, [int age]) {
-  if (age != null) {
-    print('$username, $age');
-  }
-  print('$username, 年龄保密');
+// 例3：定义一个带可选参数的方法, 用 [] 表示, 如下:
+String userInfo (String username,  [age, gender] ) {
+  if (age == null ) return '$username';
+  return '$username, $age, $gender';
 }
 
-// 例4: 默认参数:
-String xxx (String username, [int age, String gender = 'male']) {
-  if (age != null) {
-    print('$username, $age, $gender');
-  }else{
-    print('$username, 年龄保密, $gender');
-  }
+String xxx (String username,  [int age=18, gender='m'] ) {
+  return '$username, $age, $gender';
 }
 
 // 例5: 命名参数:
-String yyy (String username, {int age, String gender = 'male'}) {
-  if (age != null) {
-    print('$username, $age, $gender');
-  }else{
-    print('$username, 年龄保密, $gender');
-  }
+yyy (String username, {age, String gender='male', job='programmer'}) {
+  if (age == null || job == null) return '$username, 年龄保密, $gender';
+  return '$username, 年龄保密, $gender, $job';
 }
 
 // 例子6: 把函数当做参数:
-fn1(){
-  print('fn1');
-}
+fn1() => print('fn1');
 fn2(fn){
   fn();
 }
@@ -82,19 +70,20 @@ void main() {
   print(x);
 
   // 例2:
-  printUserInfo('hehe', 34);
+  print(printUserInfo('hehe', 34)); // hehe, 34
 
   // 例3:
-  userInfo('呵呵');
+  print(userInfo('呵呵'));
 
   // 例4:
-  xxx('没名字', 23);
-
+  print(xxx('没名字', 23));
+  
   // 例子5:
-  yyy('张三', age:23, gender: 'female');
+  print(yyy('张三', age:23, gender: 'male'));
+  // 张三, 年龄保密, male programmer
 
   // 例子6:
-  fn2(fn1);
+  fn2(fn1); // fn1
 }
 
 
