@@ -1,14 +1,14 @@
 // 类
 class PersonX {
   // 属性:
-  String name='张三';
+  var name='张三';
   int age=23;
 
   // 方法:
   void getInfo() {
     print('${this.name}----${this.age}');
   }
-  void setInfo(int age) {
+  setInfo(int age) {
     this.age = age;
   }
 }
@@ -25,6 +25,8 @@ class PersonY {
     this.name=name;
     this.age=age;
   }
+  
+
 
   getInfo() {
     print('${this.name}---${this.age}');
@@ -38,6 +40,10 @@ class PersonZ {
 
   PersonZ(this.name, this.age);
 
+  PersonZ.named(this.name, this.age) {
+    print('这是命名构造函数');
+  }
+
   getInfo() {
     print('${this.name}---${this.age}');
   }
@@ -45,28 +51,31 @@ class PersonZ {
 
 
 main(List<String> args) {
-  // 类的实例化:
-  PersonX p1 = new PersonX();
+  // // 类的实例化:
+  // PersonX p1 = new PersonX();
 
-  // 调用类的属性:
-  print(p1.name);
-  // 调用类的方法: 
-  p1.getInfo();
+  // // 调用类的属性:
+  // print(p1.name);
+  // // 调用类的方法: 
+  // p1.getInfo();
 
-  p1.setInfo(24);
-  p1.getInfo();
+  // p1.setInfo(24);
+  // p1.getInfo();
 
 
   // 类的构造函数:
   PersonY p2 = new PersonY('李四', 45);
-  p2.getInfo(); //李四---45
+  print(p2.name); 
+  // 构造函数生成之前打印的内容:构造函数之前生成的name--999
+  // 李四
 
-  PersonY p3 = new PersonY('王五', 32);
-  p3.getInfo(); // 王五---32
+  PersonZ pp = new PersonZ.named('xxxx', 12);
+  print(pp.name); // xxxx
+  print(pp.age); // 12
 
 
   // 构造函数简写:
-  PersonZ p4 = new PersonZ('hehe', 34);
-  p4.getInfo();
+  // PersonZ p4 = new PersonZ('hehe', 34);
+  // p4.getInfo();
 
 }

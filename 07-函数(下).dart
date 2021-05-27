@@ -59,13 +59,13 @@ void main(List<String> args) {
 
   // 递归求1~100的和:
   var sum = 0;
-  f (n) {
+  f (int n) {
     sum += n;
     if(n==1) return;
     f(n-1);
   }
   f (100);
-  print(sum);
+  print('递归求和：$sum');
 
   /*
   闭包:
@@ -122,4 +122,12 @@ void main(List<String> args) {
   z(); // 13
   z(); // 14
 
+  func () { 
+    return 1;
+  };
+  () { print(123); };
+  func2 () => print(123);
+
+  func2 ();
+  print(func());
 }

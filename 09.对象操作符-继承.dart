@@ -1,7 +1,6 @@
 /*
   1. Dart中的对象操作符:
-    ?     条件运算符 （了解）
-    as    类型转换
+    as    类型转换 （已废弃）
     is    类型判断
     ..    级联操作 （连缀）  (记住)
   2. extends 及 构造函数继承
@@ -14,44 +13,40 @@ class Person {
   num age;
   Person(this.name, this.age);
   void printInfo() {
-    print('${this.name}---${this.age}');
+    print('父类的printInfo：${this.name}---${this.age}');
   }
 }
 
 class Web extends Person {
-  String gender;
-  // 2.构造函数的继承:
-  // 2. [String gender] 新加的子类属性避免和父类冲突,
-  Web(String name, num age, [String gender]) : super(name, age){
+  String gender='m';
+  Web(String name, num age, 
+  // String gender 子类自己的属性： 
+  String gender) : 
+  // super 可用于继承父类的属性：
+  super(name, age) {
     // 2. 属于该函数自由的构造函数写这里:
     this.gender = gender;
   }
 
   run(){
+    // super 可用于继承父类的方法：
+    super.printInfo();
     print('${this.name}--${this.age}--${this.gender}');
   }
 
-  // 3. 重写父类存在的方法: @override, 也可以省略
+  // 重写父类存在的方法: @override, 用于标示，可省略
   @override
   void printInfo() {
-    print('${this.gender}-${this.name}');
+    print('子类重写的方法：${this.gender}-${this.name}');
   }
-  // 4. 
 }
 
 main(){
   Person p= new Person('zs', 34);
-  // ?
-  p?.printInfo();
-
-  // as
-
 
   // is
-  if (p is Person) {
-    p.name = '李四';
-  }
-  p.printInfo();
+  if (p is Person) p.name = '李四';
+  p.printInfo(); // 李四---34
 
   // as
   var p1;
@@ -61,13 +56,13 @@ main(){
   // p1.printInfo();
   // 这时,老版本dart会报错,因为不能判断p1的类型,现在的则可以
   // 老版本可以用as做以下转换:
-  (p1 as Person).printInfo();
+  (p1 as Person).printInfo(); // lisi---20
 
-  // ..
+  // // ..
   Person p2 = new Person('王五', 34);
   p1..name = '李四'
     ..age = 30
-    ..printInfo();
+    ..printInfo(); // 李四---30
   /**
    * 相当于下面操作的简写:
    * p1.name = '李四';
@@ -76,8 +71,10 @@ main(){
    */
 
   // extends 
-  Web v=new Web('hehe', 13);
-  v.printInfo();
+  Web v=new Web('hehe', 13, 'f');
+  v.printInfo(); // 子类重写的方法：f-hehe
   Web v1=new Web('子类里的实例化', 77, 'x');
-  v1.run();
+  v1.run(); 
+  // 父类的printInfo：子类里的实例化---77
+  // 子类里的实例化--77--x
 }
