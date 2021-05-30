@@ -28,14 +28,14 @@
 // 1. 解决办法: 泛型
 // 第一个T对返回return的类型进行校验, 如果不需要对返回类型进行校验, 第一个T可以省去:
 T getData <T> (T value){
-  print(value);
+  return value;
 }
 
 
 
 // 2. 泛型类:
 class PrintClass <T> {
-  List list = new List<T>();
+  List list = <T>[];
   void add(T value) {
     this.list.add(value);
   }
@@ -81,27 +81,28 @@ class MemoryCache <T> implements Cache <T> {
 
 void main() {
   // 
-  getData <String> ('你好');
-  getData <int> (123);
+  print(getData <String> ('你好'));
+  print(getData <int> (123));
 
   // 2. 泛型类: 
   // 2.1 List本身就是一种泛型类:
-  List list = new List<String>();
+  List list = <String>[];
   // list.add(123);
   // 报错:
   // Unhandled exception:
   // type 'int' is not a subtype of type 'String' of 'value'
 
-  list.add('123');
-  print(list);
+  // list.add('123');
+  // print(list);
 
   // 2.2
   PrintClass p = new PrintClass <String> ();
-  p.add('123');
+  p.add('xxxxxxx');
+  p.printInfo(); // xxxxxxx
 
   // 3. 泛型接口:
   MemoryCache m = new MemoryCache <String> ();
-  m.setByKey('index', '123');
+  m.setByKey('index', '123'); // 我是内存缓存, 把key=index value=123的数据写入内存中
 
   MemoryCache m1 = new MemoryCache <Map>();
   m1.setByKey('name', {'hehe': 456, 'haha': 678});

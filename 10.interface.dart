@@ -15,7 +15,7 @@
 
 // 定义一个DB库, 支持mysql, mssql, mongodb
 abstract class Db {
-  String uri; //数据库连接地址
+  String uri=''; //数据库连接地址
   add(String data);
   save();
   delete();
@@ -47,9 +47,11 @@ class Mysql implements Db {
   
 }
 
-class Mssql implements Db {
+class MongoDB implements Db {
   @override
   String uri;
+
+  MongoDB(this.uri);
 
   @override
   add(String data) {
